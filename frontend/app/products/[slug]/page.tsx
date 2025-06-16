@@ -1,9 +1,6 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import { Card } from '@/components/ui/card'
 import { ProductPageClient } from '@/components/products/ProductDetailClient'
-import { Product, ProductVariant } from '@/types/product'
-import { fetchProduct, getImageUrl } from '@/lib/api/products'
+import { fetchProduct } from '@/lib/api/products'
 import { parseProductSlug } from '@/utils/slug'
 
 export default async function ProductDetailPage({
