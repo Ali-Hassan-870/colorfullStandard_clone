@@ -1,11 +1,10 @@
 // lib/landing-api.ts
 import { LandingPageResponse } from "@/types/landing-page";
 
-const API_BASE_URL = "http://localhost:1337";
-
+const STRAPI_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
 export async function getLandingPageData(): Promise<LandingPageResponse> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/landing-page`, {
+    const response = await fetch(`${STRAPI_BASE_URL}/api/landing-page`, {
       next: { revalidate: 60 } // Revalidate every minute
     });
 

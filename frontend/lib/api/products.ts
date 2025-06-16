@@ -2,12 +2,6 @@ import { Product, ProductApiResponse } from '@/types/product'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'
 
-/**
- * Fetch a single product by slug and gender
- * @param slug - The product slug
- * @param gender - The gender category
- * @returns Product data or null if not found
- */
 export async function fetchProduct(slug: string, gender: string): Promise<Product | null> {
   try {
     const url = new URL(`${API_BASE_URL}/api/products`)
@@ -17,8 +11,8 @@ export async function fetchProduct(slug: string, gender: string): Promise<Produc
 
     const response = await fetch(url.toString(), {
       next: { 
-        revalidate: 300, // Revalidate every 5 minutes
-        tags: [`product-${slug}-${gender}`] // For on-demand revalidation
+        revalidate: 300, 
+        tags: [`product-${slug}-${gender}`]
       },
     })
 
@@ -35,11 +29,7 @@ export async function fetchProduct(slug: string, gender: string): Promise<Produc
   }
 }
 
-/**
- * Fetch multiple products with filters
- * @param filters - Object containing filter parameters
- * @returns Array of products
- */
+
 export async function fetchProducts(filters: {
   gender?: string
   category?: string
@@ -86,11 +76,7 @@ export async function fetchProducts(filters: {
   }
 }
 
-/**
- * Get the full image URL
- * @param imageUrl - The relative image URL from the API
- * @returns Full image URL
- */
+
 export function getImageUrl(imageUrl: string): string {
   if (imageUrl.startsWith('http')) {
     return imageUrl
@@ -98,20 +84,12 @@ export function getImageUrl(imageUrl: string): string {
   return `${API_BASE_URL}${imageUrl}`
 }
 
-/**
- * Check if a product variant is in stock
- * @param variant - The product variant
- * @returns Boolean indicating if variant has stock
- */
+
 export function isVariantInStock(variant: any): boolean {
   return variant.sizes.some((sizeItem: any) => sizeItem.stock_quantity > 0)
 }
 
-/**
- * Get total stock for a variant
- * @param variant - The product variant
- * @returns Total stock quantity
- */
+
 export function getVariantTotalStock(variant: any): number {
   return variant.sizes.reduce((total: number, sizeItem: any) => 
     total + sizeItem.stock_quantity, 0
