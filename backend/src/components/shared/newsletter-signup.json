@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_newsletter_signups",
+  "info": {
+    "displayName": "newsletter-signup"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "placeholder": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

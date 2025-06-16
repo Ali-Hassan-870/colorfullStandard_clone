@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_landing_page_image_items",
+  "info": {
+    "displayName": "image-item"
+  },
+  "options": {},
+  "attributes": {
+    "is_slides_show": {
+      "type": "boolean",
+      "default": false
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "headline": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "buttons": {
+      "type": "component",
+      "component": "shared.footer-link",
+      "repeatable": true
+    },
+    "autoplay_delay": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "config": {}
+}

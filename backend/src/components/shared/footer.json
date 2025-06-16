@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_footers",
+  "info": {
+    "displayName": "footer"
+  },
+  "options": {},
+  "attributes": {
+    "sections": {
+      "type": "component",
+      "component": "shared.footer-section",
+      "repeatable": true
+    },
+    "payment_cards": {
+      "type": "component",
+      "component": "shared.payment-card",
+      "repeatable": true
+    },
+    "newsletter": {
+      "type": "component",
+      "component": "shared.newsletter-signup",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

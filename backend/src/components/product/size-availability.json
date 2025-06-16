@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_product_size_availabilities",
+  "info": {
+    "displayName": "size-availability"
+  },
+  "options": {},
+  "attributes": {
+    "size": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::size.size"
+    },
+    "stock_quantity": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

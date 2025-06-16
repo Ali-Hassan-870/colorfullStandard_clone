@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_navbars",
+  "info": {
+    "displayName": "navbar"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "component": "shared.nav-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

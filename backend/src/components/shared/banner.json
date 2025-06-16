@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_banners",
+  "info": {
+    "displayName": "banner"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

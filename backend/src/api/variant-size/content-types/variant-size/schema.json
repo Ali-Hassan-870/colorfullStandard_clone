@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "variant_sizes",
+  "info": {
+    "singularName": "variant-size",
+    "pluralName": "variant-sizes",
+    "displayName": "Variant Size"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

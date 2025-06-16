@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_nav_items",
+  "info": {
+    "displayName": "nav-item"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "Men",
+        "Women",
+        "Transparency",
+        "Stores",
+        "Colors"
+      ]
+    },
+    "sections": {
+      "type": "component",
+      "component": "shared.nav-section",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
