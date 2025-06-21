@@ -11,6 +11,24 @@ interface SlideshowProps {
   className?: string;
 }
 
+const STRAPI_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+
+// Helper function to get the correct image URL
+const getImageUrl = (imageUrl: string) => {
+  // Handle undefined or null imageUrl
+  if (!imageUrl) {
+    return '';
+  }
+  
+  // If the image URL is already a full URL, return it as is
+  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+    return imageUrl;
+  }
+  
+  // For relative URLs (localhost development), prepend the base URL
+  return `${STRAPI_BASE_URL}${imageUrl}`;
+};
+
 export default function Slideshow({ images, autoplayDelay, className = "" }: SlideshowProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -36,7 +54,7 @@ export default function Slideshow({ images, autoplayDelay, className = "" }: Sli
           }`}
         >
           <Image
-            src={`http://localhost:1337${image.url}`}
+            src={getImageUrl(image.url)}
             alt=""
             fill
             className="object-cover"

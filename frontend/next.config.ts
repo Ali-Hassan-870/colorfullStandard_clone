@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         port: '1337',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'refreshing-friends-b83db98b52.media.strapiapp.com',
+        pathname: '/**',
+      },
     ],
   },
   eslint: {

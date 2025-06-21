@@ -9,6 +9,30 @@ interface ImageSectionProps {
   className?: string;
 }
 
+const STRAPI_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+
+// Helper function to get the correct image URL
+const getImageUrl = (imageUrl: string) => {
+  // Handle undefined or null imageUrl
+  if (!imageUrl) {
+    return '';
+  }
+  
+  // Convert to string and trim whitespace
+  const cleanUrl = String(imageUrl).trim();
+  
+  
+  
+  // If the image URL is already a full URL, return it as is
+  if (cleanUrl.startsWith('http://') || cleanUrl.startsWith('https://')) {
+    return cleanUrl;
+  }
+  
+  // For relative URLs (localhost development), prepend the base URL
+  const fullUrl = `${STRAPI_BASE_URL}${cleanUrl}`;
+  return fullUrl;
+};
+
 export default function ImageSection({ section, className = "" }: ImageSectionProps) {
   const { headline, title, images, buttons, is_slides_show, autoplay_delay } = section;
 
@@ -21,7 +45,7 @@ export default function ImageSection({ section, className = "" }: ImageSectionPr
         ) : (
           images.length > 0 && (
             <Image
-              src={`http://localhost:1337${images[0].url}`}
+              src={getImageUrl(images[0].url)}
               alt=""
               fill
               className="object-cover"

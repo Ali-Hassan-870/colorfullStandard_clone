@@ -1,6 +1,6 @@
 import { Product, ProductApiResponse } from '@/types/product'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'
+const API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
 
 export async function fetchProduct(slug: string, gender: string): Promise<Product | null> {
   try {

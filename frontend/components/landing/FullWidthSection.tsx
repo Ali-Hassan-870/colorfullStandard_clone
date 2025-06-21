@@ -7,6 +7,24 @@ interface FullWidthSectionProps {
   block: ImageItemBlock;
 }
 
+const STRAPI_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+
+// Helper function to get the correct image URL
+const getImageUrl = (imageUrl: string) => {
+  // Handle undefined or null imageUrl
+  if (!imageUrl) {
+    return '';
+  }
+  
+  // If the image URL is already a full URL, return it as is
+  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+    return imageUrl;
+  }
+  
+  // For relative URLs (localhost development), prepend the base URL
+  return `${STRAPI_BASE_URL}${imageUrl}`;
+};
+
 export default function FullWidthSection({ block }: FullWidthSectionProps) {
   const { headline, title, buttons, images } = block;
 
@@ -16,7 +34,7 @@ export default function FullWidthSection({ block }: FullWidthSectionProps) {
       <div className="absolute inset-0">
         {images && images.length > 0 ? (
           <Image
-            src={`http://localhost:1337${images[0].url}`}
+            src={getImageUrl(images[0].url)}
             alt=""
             fill
             className="object-cover"

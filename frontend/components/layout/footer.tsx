@@ -9,6 +9,28 @@ import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
 import { GlobalData } from "@/types/global";
 import { getGlobalData } from "@/lib/api";
 
+const STRAPI_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+
+// Helper function to get the correct image URL (same as ImageSection)
+const getImageUrl = (imageUrl: string) => {
+  // Handle undefined or null imageUrl
+  if (!imageUrl) {
+    return '';
+  }
+  
+  // Convert to string and trim whitespace
+  const cleanUrl = String(imageUrl).trim();
+  
+  // If the image URL is already a full URL, return it as is
+  if (cleanUrl.startsWith('http://') || cleanUrl.startsWith('https://')) {
+    return cleanUrl;
+  }
+  
+  // For relative URLs (localhost development), prepend the base URL
+  const fullUrl = `${STRAPI_BASE_URL}${cleanUrl}`;
+  return fullUrl;
+};
+
 const Footer: React.FC = () => {
   const [globalData, setGlobalData] = useState<GlobalData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -157,10 +179,7 @@ const Footer: React.FC = () => {
                     style={{ minWidth: "32px" }}
                   >
                     <Image
-                      src={`${
-                        process.env.NEXT_PUBLIC_STRAPI_URL ||
-                        "http://localhost:1337"
-                      }${card.logo.url}`}
+                      src={getImageUrl(card.logo.url)}
                       alt={card.name}
                       width={40}
                       height={24}
@@ -171,6 +190,11 @@ const Footer: React.FC = () => {
                       }}
                       priority={false}
                       loading="lazy"
+                      onError={(e) => {
+                        console.error(`Failed to load image: ${getImageUrl(card.logo.url)}`);
+                        // Optional: Set a placeholder image
+                        // e.currentTarget.src = '/placeholder-payment.png';
+                      }}
                     />
                   </div>
                 ))}
